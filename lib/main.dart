@@ -1,12 +1,28 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:testflutter/screens/dataScreen.dart';
+
+import 'screens/DatosStackScreen.dart';
+import 'screens/quarterScreen.dart';
+import 'screens/secondScreen.dart';
+import 'screens/stackScreen.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false, //PARA QUITAR MENSAJE DE EMULADOR
     title: 'Flutter Demo',
-    home: HomePage(),
+    initialRoute: '/', //PARA LA RUTA INICIAL
+    routes: {
+      '/': (context) => HomePage(),
+      '/second': (context) => SecondPage(),
+      '/Third': (context) => ThirdPage(),
+      '/quarter': (context) => quarterPage(),
+      '/stack': (context) =>
+          TestStack(), //se ejecuta (ctr + .) para unir la libreria la cual es la 2 opcion
+      '/Datosstack': (context) => DatosstackPage(),
+    },
+    //home: HomePage(), //PONER ESTA LINIA SOLO SI ESBOTON INDIVIDUAL
   ));
 }
 
@@ -21,10 +37,11 @@ class HomePage extends StatelessWidget {
         leading: Icon(Icons.menu), //PRIMERA FORMA DE ICONOS
         //  leading: IconButton( icon: Icon(Icons.menu), onPressed: () => {},), //SEGUNDA FORMA DE ICONOS
         centerTitle: true,
-        title: Text('Página Principal '),
+        backgroundColor: Colors.black,
+        title: Text('PÁGINA PRINCIPAL'),
         elevation: 20.0,
-        shadowColor: Colors.blue,
-        backgroundColor: Colors.green,
+        shadowColor: Colors.black,
+        //backgroundColor: Colors.red,
         //actionsIconTheme: IconThemeData(color: Colors.red), //PARA EL COLOR DE LOS ICONOS
         shape: RoundedRectangleBorder(
           //Nos funciona para los bordes de la barrra de opciones
@@ -37,7 +54,7 @@ class HomePage extends StatelessWidget {
           ),
           //        IconButton(
           //         icon: Icon(Icons.note),
-          //        onPressed: () => {print('BOTÓN DE NOTAS')},
+          //        onPressed: () => {print('BOT├ôN DE NOTAS')},
           //S     ),
         ],
       ),
@@ -62,97 +79,99 @@ class HomePage extends StatelessWidget {
         children: [
           SizedBox(height: 5.0),
           ElevatedButton(
-              child: Text('Segunda Pantalla'),
-              onPressed: () {
-                final route = MaterialPageRoute(
+            child: Text('SEGUNDA PANTALLA'),
+            onPressed: () {
+              //PARA BOTON FISICO
+              /*   final route = MaterialPageRoute(
                   builder: (context) => const SecondPage(),
                 );
                 Navigator.push(context, route);
-              }),
+              }
+              //FIN DE PARA BOTON FISICO
+            */
+              //INICIO DE BOTON CON LINK
+              Navigator.pushNamed(context, '/second');
+            },
+          ),
+
           SizedBox(height: 5.0),
+
+          //FIN DE BOTON CON LINK
           ElevatedButton(
-              child: Text('Datos'),
-              onPressed: () {
-                final route = MaterialPageRoute(
+            child: Text('TERCERA PANTALLA DATOS'),
+            onPressed: () {
+              //PARA BOTON FISICO
+              /* final route = MaterialPageRoute(
                   builder: (context) => const ThirdPage(),
                 );
                 Navigator.push(context, route);
-              }),
+              }
+              */
+              //FIN DE BOTON FISICO
+
+              //INICIO DE BOTON CON LINK
+              Navigator.pushNamed(context, '/Third');
+            },
+          ),
+
+          //INICIO DE LA 4 PANTALLA
+          SizedBox(height: 5.0),
+          ElevatedButton(
+            child: Text('CUARTA PANTALLA'),
+            onPressed: () {
+              //PARA BOTON FISICO
+              /* final route = MaterialPageRoute(
+                  builder: (context) => const quarterPage(),
+                );
+                Navigator.push(context, route);
+              }
+              */
+              //FIN DE BOTON FISICO
+
+              //INICIO DE BOTON CON LINK
+              Navigator.pushNamed(context, '/quarter');
+            },
+          ),
+
+          //INICIO DE LA 5 PANTALLA
+          SizedBox(height: 5.0),
+          ElevatedButton(
+            child: Text('STACK PANTALLA'),
+            onPressed: () {
+              //PARA BOTON FISICO
+              /* final route = MaterialPageRoute(
+                  builder: (context) => const quarterPage(),
+                );
+                Navigator.push(context, route);
+              }
+              */
+              //FIN DE BOTON FISICO
+
+              //INICIO DE BOTON CON LINK
+              Navigator.pushNamed(context, '/stack');
+            },
+          ),
+
+          //INICIO DE LA 5 PANTALLA
+          SizedBox(height: 5.0),
+          ElevatedButton(
+            child: Text('PANTALLA DATOS STACK '),
+            onPressed: () {
+              //PARA BOTON FISICO
+              /* final route = MaterialPageRoute(
+                  builder: (context) => const quarterPage(),
+                );
+                Navigator.push(context, route);
+              }
+              */
+              //FIN DE BOTON FISICO
+
+              //INICIO DE BOTON CON LINK
+              Navigator.pushNamed(context, '/Datosstack');
+            },
+          ),
         ],
       )),
     );
-  }
-}
-
-//ES PARA LA SEGUNDA PANTALLA
-class SecondPage extends StatelessWidget {
-  const SecondPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Segunda Pantalla'),
-      ),
-      body: Center(
-          child: ElevatedButton(
-        child: const Text('Regresar ...'),
-        onPressed: () => Navigator.pop(context),
-      )),
-    );
-  }
-}
-
-//ES PARA LA TERCERA PANTALLA PANTALLA
-class ThirdPage extends StatelessWidget {
-  const ThirdPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Datos'),
-      ),
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 20.0),
-              Image.asset(
-                'assets/img/Perfil.jpg',
-                width: 250.0,
-              ),
-              Text(
-                'Jesús Antonio Martínez González',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Color.fromARGB(255, 255, 0, 0),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(width: 10.0),
-              Text(
-                  'Tecnologías de la Información Área Desarrollo de Software Multiplataforma',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Color.fromARGB(255, 2, 53, 255),
-                    fontFamily: 'Raleway',
-                  )),
-              SizedBox(width: 10.0),
-              ElevatedButton(
-                child: const Text('Regresar...'),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ]),
-      ),
-    );
-
-    /*     body: Center(
-        
-          child: ElevatedButton(
-        child: const Text('Regresar'),
-        onPressed: () => Navigator.pop(context),
-      )),
-    );*/
   }
 }
