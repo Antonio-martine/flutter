@@ -7,6 +7,7 @@ import 'screens/DatosStackScreen.dart';
 import 'screens/quarterScreen.dart';
 import 'screens/secondScreen.dart';
 import 'screens/stackScreen.dart';
+import 'screens/formScreen.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -21,6 +22,7 @@ void main() {
       '/stack': (context) =>
           TestStack(), //se ejecuta (ctr + .) para unir la libreria la cual es la 2 opcion
       '/Datosstack': (context) => DatosstackPage(),
+      '/form': (context) => FormScreen(),
     },
     //home: HomePage(), //PONER ESTA LINIA SOLO SI ESBOTON INDIVIDUAL
   ));
@@ -170,6 +172,13 @@ class HomePage extends StatelessWidget {
               Navigator.pushNamed(context, '/Datosstack');
             },
           ),
+          SizedBox(height: 5.0),
+          ElevatedButton(
+            child: Text('Formulario'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/form');
+            },
+          )
         ],
       )),
     );
